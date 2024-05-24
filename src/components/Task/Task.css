@@ -1,0 +1,16 @@
+.task-name {
+    margin: 10px;
+    border: 1px solid #eee;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-text {
+    margin: 15px
+}
+
+.btnDelete {
+    margin-right: 10px;
+}
