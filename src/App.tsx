@@ -14,6 +14,12 @@ const App = () => {
         console.log('Button clicked');
     }
 
+    const deleteTask= (id: number) => {
+        const taskCopy = [...task];
+        taskCopy.splice(id, 1);
+        setTask(taskCopy);
+    }
+
     return (
         <div className='App'>
             <div className='task-form'>
@@ -22,7 +28,7 @@ const App = () => {
             </div>
             <div className='task'>
                 {task.map((item, id) => (
-                    <Task key={id} name={item.name} />
+                    <Task key={id} name={item.name} onRemove={() => deleteTask(id)} />
                 ))}
             </div>
         </div>

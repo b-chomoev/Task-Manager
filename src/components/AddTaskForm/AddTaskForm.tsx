@@ -3,7 +3,7 @@ import './AddTaskFrom.css';
 const AddTaskForm = () => {
     return (
         <div>
-            <input type="text" className='inputAddTask' />
+            <input type="text" className='inputAddTask'/>
         </div>
     );
 };

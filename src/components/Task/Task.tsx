@@ -1,19 +1,17 @@
 import './Task.css';
-import React from "react";
+import '../../App'
 
 interface Props {
     name: string;
+    onRemove: React.MouseEventHandler;
 }
 
 const Task: React.FC<Props> = (props) => {
-    const deleteTask= () => {
-        console.log('delete Button clicked');
-    }
 
     return (
         <div className='task-name'>
             <p className='task-text'>{props.name}</p>
-            <button onClick={deleteTask} className='btnDelete'>Delete</button>
+            <button onClick={props.onRemove} className='btnDelete'>Delete</button>
         </div>
     );
 };
