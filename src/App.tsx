@@ -2,30 +2,25 @@ import AddTaskForm from "./components/AddTaskForm/AddTaskForm";
 import './index.css'
 import {useState} from "react";
 import Task from "./components/Task/Task";
+import {TaskElements} from "./components/Task/types";
 
 const App = () => {
-    const [task, setTask] = useState([
+    const [task, setTask] = useState<TaskElements[]>([
         {name: 'Buy milk', id: '1'},
         {name: 'Walk with dog', id: '2'},
         {name: 'Do homework', id: '3'},
-    ])
-
-    const taskAdd = () => {
-        console.log('Button clicked');
-    }
+    ]);
 
     const deleteTask= (id: string) => {
-        const taskCopy = [...task];
-        const index = task.findIndex((item) => item.id === id);
-        taskCopy.splice(index, 1);
-        setTask(taskCopy);
-    }
+       setTask((prevState) => {
+           return prevState.filter((item) => item.id !== id);
+       });
+    };
 
     return (
         <div className='App'>
             <div className='task-form'>
                 <AddTaskForm />
-                <button onClick={taskAdd} className='btnAdd'>Add Task</button>
             </div>
             <div className='task'>
                 {task.map((item) => (
