@@ -14,9 +14,10 @@ const App = () => {
         console.log('Button clicked');
     }
 
-    const deleteTask= (id: number) => {
+    const deleteTask= (id: string) => {
         const taskCopy = [...task];
-        taskCopy.splice(id, 1);
+        const index = task.findIndex((item) => item.id === id);
+        taskCopy.splice(index, 1);
         setTask(taskCopy);
     }
 
@@ -27,8 +28,8 @@ const App = () => {
                 <button onClick={taskAdd} className='btnAdd'>Add Task</button>
             </div>
             <div className='task'>
-                {task.map((item, id) => (
-                    <Task key={id} name={item.name} onRemove={() => deleteTask(id)} />
+                {task.map((item) => (
+                    <Task key={item.id} name={item.name} onRemove={() => deleteTask(item.id)} />
                 ))}
             </div>
         </div>
