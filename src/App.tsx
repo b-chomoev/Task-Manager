@@ -1,5 +1,5 @@
 import AddTaskForm from "./components/AddTaskForm/AddTaskForm";
-import './index.css'
+import './index.css';
 import {useState} from "react";
 import Task from "./components/Task/Task";
 import {TaskElements} from "./components/Task/types";
@@ -11,20 +11,28 @@ const App = () => {
         {name: 'Do homework', id: '3'},
     ]);
 
-    const deleteTask= (id: string) => {
-       setTask((prevState) => {
-           return prevState.filter((item) => item.id !== id);
-       });
+    const deleteTask = (id: string) => {
+        setTask((prevState) => {
+            return prevState.filter((item) => item.id !== id);
+        });
+    };
+
+    const createTask = (newTask: TaskElements) => {
+        setTask((prevState) => {
+            const taskCopy = [...prevState];
+            taskCopy.push(newTask);
+            return taskCopy;
+        });
     };
 
     return (
         <div className='App'>
             <div className='task-form'>
-                <AddTaskForm />
+                <AddTaskForm onSubmit={createTask}/>
             </div>
             <div className='task'>
                 {task.map((item) => (
-                    <Task key={item.id} name={item.name} onRemove={() => deleteTask(item.id)} />
+                    <Task key={item.id} name={item.name} onRemove={() => deleteTask(item.id)}/>
                 ))}
             </div>
         </div>

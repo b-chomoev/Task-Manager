@@ -1,10 +1,15 @@
 import './AddTaskFrom.css';
 import {useState} from "react";
+import {TaskElements} from "../Task/types";
 
-const AddTaskForm = () => {
-    const [, setTaskData] = useState({
+interface Props {
+    onSubmit: (newTask: TaskElements) => void;
+}
+
+const AddTaskForm: React.FC<Props> = ({onSubmit}) => {
+    const [taskData, setTaskData] = useState({
         name: '',
-    })
+    });
 
     const onFieldChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const name = e.target.name;
@@ -14,13 +19,19 @@ const AddTaskForm = () => {
             return {
                 ...prevState,
                 [name]: value,
-            }
+            };
         });
     };
 
     const onFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-    }
+        const task: TaskElements = {
+            ...taskData,
+            id: Math.random().toString(),
+        };
+
+        onSubmit(task);
+    };
 
     return (
         <form onSubmit={onFormSubmit}>

@@ -1,5 +1,5 @@
 import './Task.css';
-import '../../App'
+import '../../App';
 
 interface Props {
     name: string;
